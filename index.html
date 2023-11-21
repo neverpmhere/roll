@@ -29,13 +29,14 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: #87cefa; /* Светлоголубой цвет квадратов */
+      background-color: #4169e1; /* Синий цвет квадратов */
       color: #fff;
       font-size: 24px;
       font-weight: bold;
       border: 4px solid #000;
       cursor: pointer;
       opacity: 0.8; /* Полупрозрачность */
+      transition: border-color 0.5s ease-out, opacity 0.5s ease-out;
     }
 
     .hidden {
@@ -43,24 +44,25 @@
     }
 
     button {
-      background-color: #87cefa; /* Светлоголубой цвет кнопки */
+      background-color: #4169e1; /* Синий цвет кнопки */
       color: #fff;
       font-size: 18px;
       padding: 10px 20px;
-      border: 4px solid #fff; /* Белая рамка */
+      border: 4px solid #000; /* Черная рамка */
       border-radius: 5px;
       cursor: pointer;
       margin-top: 10px; /* Отступ от квадратов */
+      transition: background-color 0.5s ease-out;
     }
 
     button:hover {
-      background-color: #add8e6; /* Более светлый светлоголубой при наведении */
+      background-color: #6495ed; /* Светло-синий при наведении */
     }
   </style>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const squares = document.querySelectorAll(".square");
-      const button = document.getElementById("removeSquareButton");
+      const button = document.getElementById("rollButton");
 
       button.addEventListener("click", removeRandomSquare);
 
@@ -72,8 +74,27 @@
         if (visibleSquares.length > 0) {
           const randomIndex = Math.floor(Math.random() * visibleSquares.length);
           const removedSquare = visibleSquares[randomIndex];
-          removedSquare.style.visibility = "hidden";
+
+          // Добавляем анимацию прокрута
+          removedSquare.style.borderColor = getRandomColor();
+          removedSquare.style.opacity = 0;
+
+          setTimeout(() => {
+            removedSquare.style.visibility = "hidden";
+            removedSquare.style.borderColor = "#000"; // Возвращаем черный цвет рамки
+            removedSquare.style.opacity = 0.8; // Возвращаем полупрозрачность
+          }, 500); // Время анимации в миллисекундах
         }
+      }
+
+      // Функция для генерации случайного цвета в формате #RRGGBB
+      function getRandomColor() {
+        const letters = "0123456789ABCDEF";
+        let color = "#";
+        for (let i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
       }
     });
   </script>
@@ -99,7 +120,8 @@
   <div class="square">15</div>
 </div>
 
-<button id="removeSquareButton">Remove Square</button>
+<button id="rollButton">Roll</button>
 
 </body>
 </html>
+

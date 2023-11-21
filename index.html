@@ -10,7 +10,8 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      background-color: #f0f0f0;
+      background-color: #333;
+      color: #fff;
     }
 
     .container {
@@ -26,7 +27,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: #333;
+      background-color: rgba(255, 69, 0, 0.7); /* Яркий оранжевый с полупрозрачностью */
       color: #fff;
       font-size: 24px;
       font-weight: bold;
@@ -36,6 +37,20 @@
 
     .hidden {
       visibility: hidden;
+    }
+
+    button {
+      background-color: #ff4500; /* Оранжевый */
+      color: #fff;
+      font-size: 18px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #ff6347; /* Светло-оранжевый при наведении */
     }
   </style>
   <script>
@@ -80,7 +95,7 @@
   <div class="square">15</div>
 </div>
 
-<button id="removeSquareButton">Remove Square</button>
+<button id="removeSquareButton">Roll</button>
 
 </body>
 </html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(5, 100px);
+      gap: 10px;
+      text-align: center;
+    }
+
+    .square {
+      width: 100px;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #333;
+      color: #fff;
+      font-size: 24px;
+      font-weight: bold;
+      border: 4px solid #000;
+      cursor: pointer;
+    }
+
+    .hidden {
+      visibility: hidden;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const squares = document.querySelectorAll(".square");
+      const button = document.getElementById("removeSquareButton");
+
+      button.addEventListener("click", removeRandomSquare);
+
+      function removeRandomSquare() {
+        const visibleSquares = Array.from(squares).filter(
+          (square) => square.style.visibility !== "hidden"
+        );
+
+        if (visibleSquares.length > 0) {
+          const randomIndex = Math.floor(Math.random() * visibleSquares.length);
+          const removedSquare = visibleSquares[randomIndex];
+          removedSquare.style.visibility = "hidden";
+        }
+      }
+    });
+  </script>
+</head>
+<body>
+
+<div class="container">
+  <!-- 15 squares with numbers -->
+  <div class="square">1</div>
+  <div class="square">2</div>
+  <div class="square">3</div>
+  <div class="square">4</div>
+  <div class="square">5</div>
+  <div class="square">6</div>
+  <div class="square">7</div>
+  <div class="square">8</div>
+  <div class="square">9</div>
+  <div class="square">10</div>
+  <div class="square">11</div>
+  <div class="square">12</div>
+  <div class="square">13</div>
+  <div class="square">14</div>
+  <div class="square">15</div>
+</div>
+
+<button id="removeSquareButton">Remove Square</button>
+
+</body>
+</html>
